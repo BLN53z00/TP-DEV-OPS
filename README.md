@@ -117,15 +117,37 @@ La configuration passe par des variables d'environnement (ou un fichier `backend
 
 Le détail des consignes est dans la fiche **« TP DropZone »**. En résumé :
 
-1. Remettre le dépôt d'aplomb : README, branche `main` protégée, Conventional Commits, première version taguée.
+1. Remettre le dépôt d'aplomb : README, branche `main` protégée, Conventional Commits, première version taguée. ✅
 2. Conteneuriser : images Docker de l'API et du front, `compose.yml` avec PostgreSQL, `.env.example`.
 3. Intégration continue : workflow GitHub Actions (lint, tests, E2E), tests manquants, badge.
 4. Déploiement continu : images publiées sur ghcr.io, front sur GitHub Pages, release à chaque tag.
 5. Observer : health checks Docker, logs structurés, métriques `/metrics`, supervision avec Uptime Kuma.
 
+## Contribuer
+
+Le détail complet est dans [CONTRIBUTING.md](CONTRIBUTING.md). En résumé :
+
+- `main` est **protégée** : pas de push direct, tout passe par une branche et une pull request.
+- Nommage des branches : `feat/...`, `fix/...`, `docs/...`, `chore/...`, `ci/...`, `test/...`.
+- Commits au format [Conventional Commits](https://www.conventionalcommits.org/fr/) : `feat: add drop countdown`, `fix(api): reject sold-out orders`.
+- Versions numérotées selon [semver](https://semver.org/lang/fr/) et taguées `vX.Y.Z` (tags annotés).
+
+```bash
+git switch main && git pull
+git switch -c feat/ma-fonctionnalite
+# ... modifications, commits conventionnels ...
+git push -u origin feat/ma-fonctionnalite   # puis ouvrir une pull request vers main
+```
+
+## Documentation du dépôt
+
+| Fichier | Contenu |
+|---|---|
+| [AUDIT.md](AUDIT.md) | Audit initial du projet (grille DevOps) |
+| [QUESTIONS-PARTIE-1.md](QUESTIONS-PARTIE-1.md) | Réponses aux questions de la partie 1 |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Branches, commits, cycle d'une pull request |
+| [CHANGELOG.md](CHANGELOG.md) | Historique des versions |
+
 ## Licence
 
 MIT.
-
-## Contribuer
-Voir [CONTRIBUTING.md](CONTRIBUTING.md). L'audit initial du projet est dans [AUDIT.md](AUDIT.md).
