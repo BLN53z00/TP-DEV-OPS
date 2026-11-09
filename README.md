@@ -47,6 +47,29 @@ npm run dev
 
 Le front est servi sur <http://localhost:5173> ; les appels à `/api` sont redirigés vers l'API sur le port 8000.
 
+## Lancer avec Docker
+
+Prérequis : Docker avec Docker Compose (rien d'autre à installer).
+
+```bash
+cp .env.example .env        # à adapter si besoin (mot de passe de la base)
+docker compose up --build -d
+docker compose ps           # les trois services doivent être "Up", db "healthy"
+```
+
+- Front : <http://localhost:8080>
+- API : <http://localhost:8000> (santé : <http://localhost:8000/health/ready>)
+- Les ports 8000 et 8080 doivent être libres sur la machine.
+
+Arrêter la stack :
+
+```bash
+docker compose down        # conserve les données (volume db-data)
+docker compose down -v     # supprime aussi les données
+```
+
+Services : `db` (PostgreSQL 16, données dans le volume `db-data`), `api` (FastAPI, utilisateur non-root, port 8000), `front` (nginx non-root, port 8080, redirige `/api/` vers l'API).
+
 ## Qualité et tests
 
 ```bash
@@ -106,12 +129,15 @@ La configuration passe par des variables d'environnement (ou un fichier `backend
 │   ├── tests/               tests pytest (SQLite en mémoire)
 │   ├── pyproject.toml       configuration Ruff et pytest
 │   └── requirements*.txt    dépendances épinglées
+|   └──Dockerfile            configuration docker backend
 └── frontend/                application React
-    ├── src/                 composants, pages et tests Vitest
-    ├── e2e/                 tests Playwright
-    ├── nginx.conf           configuration nginx pour servir le front dans un conteneur
-    └── playwright.config.ts
-```
+|    ├── src/                composants, pages et tests Vitest
+|    ├── e2e/                tests Playwright
+|    ├── nginx.conf          configuration nginx pour servir le front dans un conteneur
+|    └── playwright.config.ts
+|    └──Dockerfile            configuration Docker frontend
+└──compose.yml
+└──.env.example
 
 ## Ce qu'il reste à faire
 
