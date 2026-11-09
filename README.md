@@ -126,3 +126,6 @@ Le détail des consignes est dans la fiche **« TP DropZone »**. En résumé :
 ## Licence
 
 MIT.
+
+## Contribuer
+Voir [CONTRIBUTING.md](CONTRIBUTING.md). L'audit initial du projet est dans [AUDIT.md](AUDIT.md).
