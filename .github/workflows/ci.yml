@@ -87,7 +87,7 @@ jobs:
           cp .env.example .env
           docker compose up --build -d --wait
       - name: Attendre que l'API soit prête
-        run: curl --fail --retry 30 --retry-delay 2 --retry-connrefused http://localhost:8000/health/ready
+        run: curl --fail --retry 30 --retry-delay 2 --retry-all-errors http://localhost:8000/health/ready
       - name: Installer Playwright
         working-directory: frontend
         run: |
